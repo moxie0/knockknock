@@ -70,7 +70,7 @@ def main(argv):
     checkPortConflict(knockPort)
     createDirectory(profileName)
 
-    random    = open('/dev/random', 'rb')
+    random    = open('/dev/urandom', 'rb')
     cipherKey = random.read(16)
     macKey    = random.read(16)
     counter   = 0
