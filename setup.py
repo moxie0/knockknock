@@ -7,19 +7,18 @@ shutil.copyfile("knockknock-proxy.py", "knockknock/knockknock-proxy")
 shutil.copyfile("knockknock.py", "knockknock/knockknock")
 
 setup  (name         = 'knockknock',
-        version      = '0.6',
+        version      = '0.8',
         description  = 'A cryptographic single-packet port-knocker.',
         author       = 'Moxie Marlinspike',
         author_email = 'moxie@thoughtcrime.org',
         url          = 'http://www.thoughtcrime.org/software/knockknock/',
         license      = 'GPL',
         packages     = ["knockknock", "knockknock.proxy"],
-#        package_dir = {'knockknock' : 'knockknock/'},
         scripts      = ['knockknock/knockknock-daemon',
                         'knockknock/knockknock-genprofile',
                         'knockknock/knockknock-proxy',
                         'knockknock/knockknock'],
-        data_files   = [('share/knockknock', ['README', 'INSTALL', 'COPYING']),
+        data_files   = [('share/knockknock', ['README', 'INSTALL', 'COPYING', 'minimal-firewall.sh']),
                       ('/etc/knockknock.d/', ['config'])]
        )
 
