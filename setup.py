@@ -1,10 +1,11 @@
 import sys, os, shutil
 from distutils.core import setup, Extension
 
-shutil.copyfile("knockknock-daemon.py", "knockknock/knockknock-daemon")
-shutil.copyfile("knockknock-genprofile.py", "knockknock/knockknock-genprofile")
-shutil.copyfile("knockknock-proxy.py", "knockknock/knockknock-proxy")
-shutil.copyfile("knockknock.py", "knockknock/knockknock")
+if sys.argv[1] != "sdist":
+    shutil.copyfile("knockknock-daemon.py", "knockknock/knockknock-daemon")
+    shutil.copyfile("knockknock-genprofile.py", "knockknock/knockknock-genprofile")
+    shutil.copyfile("knockknock-proxy.py", "knockknock/knockknock-proxy")
+    shutil.copyfile("knockknock.py", "knockknock/knockknock")
 
 setup  (name         = 'knockknock',
         version      = '0.8',
@@ -18,8 +19,11 @@ setup  (name         = 'knockknock',
                         'knockknock/knockknock-genprofile',
                         'knockknock/knockknock-proxy',
                         'knockknock/knockknock'],
-        data_files   = [('share/knockknock', ['README', 'INSTALL', 'COPYING', 'minimal-firewall.sh']),
-                      ('/etc/knockknock.d/', ['config'])]
+        data_files   = [("", ["minimal-firewall.sh", "knockknock-daemon.py", 
+                              "knockknock-genprofile.py", "knockknock-proxy.py", 
+                              "knockknock.py"]),
+                        ('share/knockknock', ['README', 'INSTALL', 'COPYING']),
+                        ('/etc/knockknock.d/', ['config'])]
        )
 
 print "Cleaning up..."

@@ -9,9 +9,17 @@ from struct import *
 class KnockingEndpointConnection(EndpointConnection):
 
     def __init__(self, shuttle, profile, host, port):
+        self.profile = profile
+        self.host    = host
+        self.port    = port
+
         self.sendKnock(profile, host, port)
         EndpointConnection.__init__(self, shuttle, host, port)
-        
+
+    def reconnect(self):
+        self.sendKnock(self.profile, self.host, self.port)
+        EndpointConnection.reconnect(self)
+
     def sendKnock(self, profile, host, port):
         port       = pack('!H', int(port))
         packetData = profile.encrypt(port)
